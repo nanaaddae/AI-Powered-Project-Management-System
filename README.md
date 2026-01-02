@@ -38,14 +38,14 @@ A modern project management tool with AI features powered by local LLM (LMStudio
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/jira-lite.git
-cd jira-lite
+git clone https://github.com/nanaaddae/AI-Powered-Project-Management-System.git
+cd SwiftTicket
 ```
 
 ### 2. Backend Setup (Django)
 ```bash
 # Navigate to backend folder
-cd jira-lite-backend
+cd swiftticket-backend
 
 # Create virtual environment
 python -m venv venv
@@ -78,7 +78,7 @@ Backend will run on `http://127.0.0.1:8000`
 Open a **new terminal window**:
 ```bash
 # Navigate to frontend folder
-cd jira-lite-frontend
+cd swiftticket-frontend
 
 # Install dependencies
 npm install
