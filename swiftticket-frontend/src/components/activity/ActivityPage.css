@@ -1,0 +1,23 @@
+.activity-page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.activity-page-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.activity-page-header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.activity-page-content {
+  background: #f9f9f9;
+  padding: 24px;
+  border-radius: 8px;
+}

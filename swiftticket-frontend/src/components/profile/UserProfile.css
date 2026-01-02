@@ -1,0 +1,311 @@
+.profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.profile-header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.edit-button, .save-button, .cancel-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.edit-button {
+  background: #2196f3;
+  color: white;
+}
+
+.edit-button:hover {
+  background: #1976d2;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.save-button {
+  background: #4caf50;
+  color: white;
+}
+
+.save-button:hover:not(:disabled) {
+  background: #45a049;
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.cancel-button:hover {
+  background: #e0e0e0;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c62828;
+}
+
+.success-message {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border-left: 4px solid #2e7d32;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile-section {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section h2 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.info-item label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+.info-value {
+  font-size: 16px;
+  color: #333;
+  padding: 10px 12px;
+  background: #f9f9f9;
+  border-radius: 6px;
+}
+
+.role-badge {
+  display: inline-block;
+  background: #2196f3;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-transform: capitalize;
+  width: fit-content;
+}
+
+.info-item input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.info-item input:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+.expertise-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.expertise-badge {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.expertise-edit {
+  margin-bottom: 20px;
+}
+
+.helper-text {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.expertise-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.expertise-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.expertise-checkbox:hover {
+  background: #f0f0f0;
+}
+
+.expertise-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.expertise-checkbox span {
+  font-size: 14px;
+  color: #333;
+  text-transform: capitalize;
+}
+
+.workload-info {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.workload-info label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.workload-value {
+  font-size: 18px;
+  color: #2196f3;
+  font-weight: 600;
+}
+
+.bio-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.bio-textarea:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+.bio-display {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.empty-text {
+  color: #999;
+  font-style: italic;
+}
+
+.account-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meta-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.meta-value {
+  font-size: 14px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise-checkboxes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .edit-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .edit-actions button {
+    width: 100%;
+  }
+}
