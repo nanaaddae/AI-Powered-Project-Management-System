@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\nana_\PycharmProjects\SwiftTicket\swiftticket-backend\venv"
+VIRTUAL_ENV="C:\Users\nana_\PycharmProjects\Jira\jira-lite-backend\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -63,56 +63,42 @@ const UserProfile = () => {
   };
 
   const handleSave = async () => {
-  setSaving(true);
-  setError('');
-  setSuccess('');
+    setSaving(true);
+    setError('');
+    setSuccess('');
 
-  try {
-    // Update basic user info
-    const userInfoData = {
-      first_name: formData.first_name,
-      last_name: formData.last_name,
-      email: formData.email,
-    };
-    await userService.updateUserInfo(userInfoData);
-
-    // Update profile (expertise and bio)
-    const profileData = {
-      bio: formData.bio,
-      expertise_areas: formData.expertise_areas,
-    };
-    const updatedUser = await userService.updateProfile(profileData);
-
-    // Update local state
-    setUser(updatedUser);
-    setEditMode(false);
-    setSuccess('Profile updated successfully!');
-
-    // Update auth context without logging out
-    // Just refresh the user data in context
-    const currentToken = localStorage.getItem('token');
-    if (currentToken) {
-      // Manually update the user in localStorage
-      const existingAuth = JSON.parse(localStorage.getItem('user') || '{}');
-      const updatedAuth = {
-        ...existingAuth,
-        first_name: updatedUser.first_name,
-        last_name: updatedUser.last_name,
-        email: updatedUser.email,
-        profile: updatedUser.profile
+    try {
+      // Update basic user info
+      const userInfoData = {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email: formData.email,
       };
-      localStorage.setItem('user', JSON.stringify(updatedAuth));
-    }
+      await userService.updateUserInfo(userInfoData);
 
-    // Clear success message after 3 seconds
-    setTimeout(() => setSuccess(''), 3000);
-  } catch (err) {
-    console.error('Failed to update profile:', err);
-    setError(err.response?.data?.message || 'Failed to update profile');
-  } finally {
-    setSaving(false);
-  }
-};
+      // Update profile (expertise and bio)
+      const profileData = {
+        bio: formData.bio,
+        expertise_areas: formData.expertise_areas,
+      };
+      const updatedUser = await userService.updateProfile(profileData);
+
+      setUser(updatedUser);
+      setEditMode(false);
+      setSuccess('Profile updated successfully!');
+
+      // Update auth context
+      login(updatedUser);
+
+      // Clear success message after 3 seconds
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (err) {
+      console.error('Failed to update profile:', err);
+      setError(err.response?.data?.message || 'Failed to update profile');
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const handleCancel = () => {
     setFormData({
