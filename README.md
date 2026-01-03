@@ -572,11 +572,3 @@ If you found this project helpful, please consider:
 - 📢 Sharing with others
 
 ---
-
-<div align="center">
-
-**Built with ❤️ by [Your Name]**
-
-**⭐ Star this repo if you found it helpful! ⭐**
-
-</div>
