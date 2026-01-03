@@ -84,6 +84,7 @@ const Dashboard = () => {
         <p className="user-role">Role: <strong>{user?.role?.replace('_', ' ')}</strong></p>
       </div>
 
+      {/* Stats Cards - Fixed Height */}
       <div className="dashboard-grid">
         <div className="dashboard-card" onClick={() => navigate('/projects')}>
           <div className="card-icon" style={{ background: '#e3f2fd' }}>
@@ -94,8 +95,6 @@ const Dashboard = () => {
             <p>Total Projects</p>
           </div>
         </div>
-
-
 
         <div className="dashboard-card" onClick={() => navigate('/tickets')}>
           <div className="card-icon" style={{ background: '#f3e5f5' }}>
@@ -126,14 +125,17 @@ const Dashboard = () => {
             <p>Completed</p>
           </div>
         </div>
-
-        <div className="dashboard-section">
-  <h2>Recent Activity</h2>
-  <ActivityFeed limit={10} />
-</div>
-
       </div>
 
+      {/* Activity Section - Separate from stats grid */}
+      <div className="dashboard-section activity-section">
+        <h2>Recent Activity</h2>
+        <div className="activity-container">
+          <ActivityFeed limit={10} />
+        </div>
+      </div>
+
+      {/* Recent Tickets */}
       {recentTickets.length > 0 && (
         <div className="recent-tickets-section">
           <h2>Recent Tickets</h2>
