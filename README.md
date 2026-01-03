@@ -316,24 +316,25 @@ Open → In Progress → In Review → Done
 ## 🎨 Screenshots
 
 ### Dashboard
-![Dashboard](screenshots/dashboard.png)
+<img width="1618" height="1013" alt="image" src="https://github.com/user-attachments/assets/2619c87c-2f87-446a-8409-afed9fa714b8" />
+
 *Real-time statistics and recent activity feed*
 
 ### Ticket Management
-![Tickets](screenshots/tickets.png)
+<img width="1336" height="897" alt="image" src="https://github.com/user-attachments/assets/05da3544-53eb-4fd2-af38-9c44595e0f0c" />
+
 *Comprehensive ticket tracking with filters*
 
 ### AI Classification
-![AI Features](screenshots/ai-classify.png)
+<img width="880" height="931" alt="image" src="https://github.com/user-attachments/assets/0f3c2234-1681-4b44-9a96-8228fc4039c8" />
+
 *Intelligent ticket classification in action*
 
 ### Project Members
-![Members](screenshots/members.png)
+<img width="1023" height="596" alt="image" src="https://github.com/user-attachments/assets/d0922abd-e2f5-45d9-93b1-f54e00c14303" />
+
 *Easy team member management*
 
-### Activity Log
-![Activity](screenshots/activity.png)
-*Complete audit trail of all actions*
 
 ---
 
