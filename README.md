@@ -116,7 +116,7 @@ SwiftTicket is a production-ready project management application that helps team
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/swiftticket.git
+git clone https://github.com/nanaaddae/AI-Powered-Project-Management-System.git
 cd swiftticket
 ```
 
