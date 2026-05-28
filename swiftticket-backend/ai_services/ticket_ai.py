@@ -8,35 +8,52 @@ from users.models import UserProfile
 
 class LMStudioClient:
     def __init__(self, base_url=None):
-        self.base_url = base_url or settings.LMSTUDIO_BASE_URL
+        # 1. Update this to default to Groq's API endpoint if nothing is passed
+        self.base_url = base_url or getattr(settings, 'LMSTUDIO_BASE_URL', 'https://api.groq.com/openai/v1')
 
     def generate_text(self, prompt, max_tokens=500):
         """Use this for simple prompt-completion (old style)"""
         try:
+            # 2. Add the Groq Authorization Header
+            headers = {
+                "Authorization": f"Bearer {settings.GROQ_API_KEY}",
+                "Content-Type": "application/json"
+            }
+
             response = requests.post(
-                f"{self.base_url}/v1/completions",
+                f"{self.base_url}/chat/completions",
+                headers=headers,
                 json={
-                    "prompt": prompt,
+                    "model": "llama-3.1-8b-instant",
+                    # 2. Wrap your raw prompt inside a user message object
+                    "messages": [{"role": "user", "content": prompt}],
                     "max_tokens": max_tokens,
                     "temperature": 0.3,
-                    "stop": ["\n\n"]
                 },
                 timeout=30
             )
             response.raise_for_status()
-            return response.json()["choices"][0]["text"].strip()
+            return response.json()["choices"][0]["message"]["content"].strip()
         except requests.exceptions.RequestException as e:
-            print(f"LMStudio API error: {e}")
+            print(f"Groq API error (text gen): {e}")
             raise
 
     def chat_completion(self, messages, max_tokens=500):
         """Use this for chat format (new style)"""
-        print(f"Sending request to LMStudio at {self.base_url}...")
+        print(f"Sending request to Groq Cloud at {self.base_url}...")
         try:
+            # 4. Add the Groq Authorization Header here too
+            headers = {
+                "Authorization": f"Bearer {settings.GROQ_API_KEY}",
+                "Content-Type": "application/json"
+            }
+
             response = requests.post(
                 f"{self.base_url}/chat/completions",
+                headers=headers,  # Pass the authorization headers
                 json={
-                    "model": "meta-llama-3-8b-instruct",
+                    # 5. Swap out 'meta-llama-3-8b-instruct' for Groq's official Llama 3 string
+                    "model": "llama-3.1-8b-instant",
                     "messages": messages,
                     "max_tokens": max_tokens,
                     "temperature": 0.3,
@@ -47,16 +64,15 @@ class LMStudioClient:
 
             # DEBUG: Print the actual response
             response_data = response.json()
-            print(f"LMStudio Response: {json.dumps(response_data, indent=2)}")
+            print(f"Groq Response: {json.dumps(response_data, indent=2)}")
 
-            # Check if response has the expected format
             if "choices" not in response_data:
-                raise ValueError(f"Unexpected response format from LMStudio: {response_data}")
+                raise ValueError(f"Unexpected response format from Groq: {response_data}")
 
             return response_data["choices"][0]["message"]["content"].strip()
 
         except requests.exceptions.RequestException as e:
-            print(f"LMStudio Error Detail: {e.response.text if hasattr(e, 'response') and e.response else e}")
+            print(f"Groq Error Detail: {e.response.text if hasattr(e, 'response') and e.response else e}")
             raise
 
 class TicketAIService:
@@ -431,12 +447,16 @@ Return ONLY JSON:"""
             print(f"LMStudio returned: '{suggested_username}'")
 
             # Validate that the suggested username exists in our developers list
+            cleaned_suggestion = suggested_username.strip().split()[0] if suggested_username else ""
+            print(f"Cleaned suggestion: '{cleaned_suggestion}'")
+
             valid_usernames = [dev.user.username for dev in developers]
             print(f"Valid usernames: {valid_usernames}")
 
-            if suggested_username in valid_usernames:
-                print(f"✅ Valid suggestion: {suggested_username}")
-                return suggested_username
+            # Change the check to use the cleaned, single-word username
+            if cleaned_suggestion in valid_usernames:
+                print(f"✅ Valid suggestion: {cleaned_suggestion}")
+                return cleaned_suggestion
             else:
                 print(f"⚠️ Invalid suggestion '{suggested_username}', using fallback")
                 # Fallback: return developer with matching expertise and lowest workload

@@ -158,4 +158,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LMSTUDIO_BASE_URL = os.getenv('LMSTUDIO_BASE_URL', 'http://localhost:1234/v1')
+LMSTUDIO_BASE_URL = os.environ.get('LMSTUDIO_BASE_URL', 'https://api.groq.com/openai/v1')
+
+GROQ_API_KEY = os.environ.get('GROQ_API_KEY')
